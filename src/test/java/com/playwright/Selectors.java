@@ -59,7 +59,24 @@ public class Selectors {
 			
 			page.fill("id=surnameInput", "test surname");
 			page.fill("data-test-id=surnameInput", "test surname 2");
-			page.fill("m-id=surnameInput", "test surname 3"); // will result in error due to custom id
+			//page.fill("m-id=surnameInput", "test surname 3"); // will result in error due to custom id
+			
+		}
+	}
+	
+	@Test
+	public void ccSelectors() {
+		try(Playwright pw = Playwright.create()){
+			BrowserType browserType = pw.chromium();
+			Browser browser = browserType.launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(2000));
+			Page page = browser.newPage();
+			page.navigate(home);
+			System.out.println(home);
+			
+			page.fill("input", "first input element");
+			page.fill(".form-control", "first box with this class");
+			page.fill("form #exampleFormControlInput1", "combined selector");
+			page.fill(":nth-match(.form-control, 2)", "Hello strnager");
 			
 		}
 	}

@@ -10,7 +10,7 @@ import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 
-public class Selectors {
+public class TextSelectors {
 
 	String home = "file:///" + System.getProperty("user.dir") + "\\src\\web\\home.html";
 	

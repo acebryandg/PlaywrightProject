@@ -47,4 +47,21 @@ public class Selectors {
 			Assertions.assertEquals(page.title(), "Advantages");
 		}
 	}
+	
+	@Test
+	public void idSelectors() {
+		try(Playwright pw = Playwright.create()){
+			BrowserType browserType = pw.chromium();
+			Browser browser = browserType.launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(2000));
+			Page page = browser.newPage();
+			page.navigate(home);
+			System.out.println(home);
+			
+			page.fill("id=surnameInput", "test surname");
+			page.fill("data-test-id=surnameInput", "test surname 2");
+			page.fill("m-id=surnameInput", "test surname 3"); // will result in error due to custom id
+			
+		}
+	}
+	
 }

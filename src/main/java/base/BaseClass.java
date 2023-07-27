@@ -17,13 +17,13 @@ import com.microsoft.playwright.Playwright;
 
 public class BaseClass {
 	
-	public static String home = "file:///" + System.getProperty("user.dir") + "\\src\\web\\home.html";
+	public static String baseURL = "file:///" + System.getProperty("user.dir") + "\\src\\web\\home.html";
 	
-	public static Playwright playwright;
-	public static Browser browser;
+	protected static Playwright playwright;
+	protected static Browser browser;
 
-	public BrowserContext context;
-	public Page page;
+	protected BrowserContext context;
+	protected Page page;
 	
 	@BeforeAll
 	static void launchBrowser() {
@@ -44,7 +44,6 @@ public class BaseClass {
 	
 	@AfterAll
 	static void closeBrowser() {
-		browser.close();
 		playwright.close();
 	}
 	

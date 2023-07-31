@@ -66,7 +66,7 @@ public class DownloadHandlers extends BaseClass {
 
 		page.navigate(baseURL);
 
-	
+		
 		
 		//trigger and capture download
 		Download d = page.waitForDownload(() -> {

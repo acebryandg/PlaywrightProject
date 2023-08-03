@@ -120,6 +120,24 @@ public class BasicActions extends BaseClass {
 	}
 	
 	
+	
+	@Test
+	public void test() {
+		
+		page.navigate(baseURL);
+		page.fill("#exampleFormControlInput1", "myemail@inbox.con");
+		
+		Keyboard kb = page.keyboard();
+		
+		kb.press("Backspace");
+		kb.press("m");
+		
+		page.focus("#contactReason");
+		kb.press("ArrowDown");
+		kb.press("ArrowDown");
+	}
+	
+	
 }
 
 

@@ -3,7 +3,10 @@ package com.playwright;
 import base.BaseClass;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 import com.microsoft.playwright.Request;
@@ -43,6 +46,40 @@ public class APITests extends BaseClass{
 		System.out.println("\n" + request.headers());
 		System.out.println("\n" + request.postData()); //payload or request body
 		System.out.println("\n" + request.method()); //used method
+		
+		
+	}
+	
+	@Test
+	public void monitorHttpTrafficDemo() {
+		
+		//create request and response handlers----------------
+//		page.onRequest(request -> System.out.println(">> " + request.method() + " " + request.url()));
+//		page.onResponse(response -> System.out.println(">> " + response.status()));
+		
+		//perform request
+		//page.navigate("https://playwright.dev");
+		
+		//-----------------------------------------------
+		
+		//validate status code example---------------------------------
+		List<Integer> responses = new ArrayList<>();
+		page.onResponse(response -> responses.add(response.status()));
+		page.navigate("https://playwright.dev");
+		System.out.println(responses);
+		
+		//using for loop
+//		for (Integer response : responses) {
+//			Assert.assertTrue(response >= 200 && response <= 299);
+//		}
+		
+		//using stream
+		boolean foundMatch = responses.stream().anyMatch(i -> i < 200 || i >= 300);
+		Assert.assertFalse(foundMatch);
+		
+		//----------------------------------------------------------------
+		
+		
 		
 		
 	}

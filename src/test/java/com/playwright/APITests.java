@@ -73,8 +73,35 @@ public class APITests extends BaseClass{
 //			Assert.assertTrue(response >= 200 && response <= 299);
 //		}
 		
-		//using stream
+		
+		//using stream-----------------------------------------
 		boolean foundMatch = responses.stream().anyMatch(i -> i < 200 || i >= 300);
+		Assert.assertFalse(foundMatch);
+		
+		//----------------------------------------------------------------
+		
+	
+		
+	}
+	
+	@Test
+	public void monitorHttpTrafficDemo2() {
+		
+		//validate status code example---------------------------------
+		List<Boolean> statusCodeIsOK = new ArrayList<>();
+		page.onResponse(response -> statusCodeIsOK.add(response.ok()));
+		
+		page.navigate("https://playwright.dev");
+		System.out.println(statusCodeIsOK);
+		
+		//using for loop
+//		for (Integer response : responses) {
+//			Assert.assertTrue(response >= 200 && response <= 299);
+//		}
+		
+		
+		//using stream-----------------------------------------
+		boolean foundMatch = statusCodeIsOK.stream().anyMatch(statusCodeOK -> statusCodeOK == false);
 		Assert.assertFalse(foundMatch);
 		
 		//----------------------------------------------------------------
